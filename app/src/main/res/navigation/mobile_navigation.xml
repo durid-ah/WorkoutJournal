@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.durid.workoutjournal.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_workout_blueprints"
+        android:name="com.durid.workoutjournal.ui.workoutBlueprints.WorkoutBluePrintFragment"
+        android:label="@string/title_workout_blueprint" >
+        <action
+            android:id="@+id/action_navigation_workout_blueprints_to_exerciseBluePrintEditFragment"
+            app:destination="@id/exerciseBluePrintEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.durid.workoutjournal.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/exerciseBluePrintEditFragment"
+        android:name="com.durid.workoutjournal.ui.exerciseBluePrintEdit.ExerciseBluePrintEditFragment"
+        android:label="Exercise Blueprints"
+        tools:layout="@layout/fragment_exercise_blue_print_edit" >
+        <argument
+            android:name="workoutId"
+            app:argType="string" />
+    </fragment>
+</navigation>
