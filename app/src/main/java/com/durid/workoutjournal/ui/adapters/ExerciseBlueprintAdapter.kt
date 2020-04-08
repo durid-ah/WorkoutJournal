@@ -12,7 +12,7 @@ import com.durid.workoutjournal.R
 import com.durid.workoutjournal.model.ExerciseBluePrint
 import com.durid.workoutjournal.ui.exerciseBluePrintEdit.ExerciseBluePrintEditFragment
 
-class ExerciseBluePrintAdapter(
+class ExerciseBluePrintAdapter (
     private val context: Context,
     private val ebpFragment : ExerciseBluePrintEditFragment,
     private var data : ArrayList<ExerciseBluePrint>
