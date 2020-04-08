@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.durid.workoutjournal.data.ExerciseBluePrintRepo
 import com.durid.workoutjournal.data.ExerciseSetBluePrintRepo
 import com.durid.workoutjournal.model.ExerciseBluePrint
+import com.durid.workoutjournal.model.ExerciseSet
 import kotlinx.coroutines.launch
 
 class ExerciseBluePrintViewModel(
@@ -36,6 +37,12 @@ class ExerciseBluePrintViewModel(
         }
     }
 
+    fun addExerciseSet(esBp : ExerciseSet) {
+        viewModelScope.launch {
+            secondarySource.addExerciseSetBluePrint(esBp)
+        }
+    }
+
     fun editWorkoutBluePrint(bp : ExerciseBluePrint){
         viewModelScope.launch {
             dataSource.editExerciseBluePrint(bp)
@@ -43,10 +50,23 @@ class ExerciseBluePrintViewModel(
         }
     }
 
+    fun editExerciseSet(esBp: ExerciseSet) {
+        viewModelScope.launch {
+            secondarySource.editExerciseSetBluePrint(esBp)
+        }
+    }
+
+
     fun deleteWorkoutBluePrint(Id : String, workoutBpId : String) {
         viewModelScope.launch {
             dataSource.deleteExerciseBluePrint(Id)
             getExerciseBluePrints(workoutBpId)
+        }
+    }
+
+    fun deleteExerciseSet(Id: String) {
+        viewModelScope.launch {
+            secondarySource.deleteExerciseSetBluePrint(Id)
         }
     }
 

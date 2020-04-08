@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.durid.workoutjournal.R
 import com.durid.workoutjournal.model.ExerciseBluePrint
@@ -42,7 +43,7 @@ class ExerciseBluePrintAdapter (
         private val workoutType =  itemView.findViewById<TextView>(R.id.workoutType)
         private val infoButton = itemView.findViewById<Button>(R.id.infoButton)
 
-        private val setRecyclerView = itemView
+        private val exerciseSetRecyclerView = itemView
             .findViewById<RecyclerView>(R.id.exercise_set_recycler_view)
 
         private val minExerciseBluePrint = itemView
@@ -53,12 +54,20 @@ class ExerciseBluePrintAdapter (
             workoutType.text = ebp.WorkoutType.toString()
 
             minExerciseBluePrint.setOnClickListener {
-                if (setRecyclerView.visibility == View.GONE) {
-                    setRecyclerView.visibility = View.VISIBLE
+                if (exerciseSetRecyclerView.visibility == View.GONE) {
+                    exerciseSetRecyclerView.visibility = View.VISIBLE
                 } else {
-                    setRecyclerView.visibility = View.GONE
+                    exerciseSetRecyclerView.visibility = View.GONE
                 }
             }
+
+            exerciseSetRecyclerView.layoutManager = LinearLayoutManager(context)
+            val adapter = ExerciseSetBpAdapter(
+                context,
+                ebp.Sets!!
+            )
+
+            exerciseSetRecyclerView.adapter = adapter
         }
     }
 }
