@@ -14,6 +14,7 @@ import com.durid.workoutjournal.R
 import com.durid.workoutjournal.data.ExerciseBluePrintRepo
 import com.durid.workoutjournal.data.ExerciseSetBluePrintRepo
 import com.durid.workoutjournal.model.ExerciseBluePrint
+import com.durid.workoutjournal.model.ExerciseSet
 import com.durid.workoutjournal.model.WorkoutType
 import com.durid.workoutjournal.ui.adapters.ExerciseBluePrintAdapter
 
@@ -63,6 +64,10 @@ class ExerciseBluePrintEditFragment : Fragment() {
         recyclerView.adapter = ebpAdapter
 
         return root
+    }
+
+    fun addSet(esBp : ExerciseSet) {
+        exerciseBluePrintViewModel.addExerciseSet(esBp)
     }
 
     override fun onResume() {

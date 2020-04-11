@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.durid.workoutjournal.R
 import com.durid.workoutjournal.model.ExerciseBluePrint
+import com.durid.workoutjournal.model.ExerciseSet
+import com.durid.workoutjournal.model.WeightUnit
 import com.durid.workoutjournal.ui.exerciseBluePrintEdit.ExerciseBluePrintEditFragment
 
 class ExerciseBluePrintAdapter (
