@@ -66,6 +66,7 @@ class ExerciseBluePrintAdapter (
             exerciseSetRecyclerView.layoutManager = LinearLayoutManager(context)
             val adapter = ExerciseSetBpAdapter(
                 context,
+                ebp.WorkoutType,
                 ebp.Sets!!
             )
 
