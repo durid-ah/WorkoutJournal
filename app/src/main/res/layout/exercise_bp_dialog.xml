@@ -48,8 +48,7 @@
         android:textColor="@color/my_secondary_background_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exerciseBlueprintInfo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/cancelButton"
@@ -62,6 +61,38 @@
         android:textColor="@color/my_secondary_background_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/saveButton"
-        app:layout_constraintTop_toBottomOf="@+id/exerciseBlueprintInfo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:checkedButton="@id/repsRadioButton"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseBlueprintInfo">
+
+        <RadioButton
+            android:id="@+id/repsRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reps"
+            android:textColor="@color/my_secondary_background_color"
+            android:textColorLink="@color/my_secondary_background_color"
+            android:buttonTint="@color/my_secondary_background_color"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/timedRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@string/timed"
+            android:textColor="@color/my_secondary_background_color"
+            android:textColorHighlight="@color/my_secondary_background_color"
+            android:textColorLink="@color/my_secondary_background_color"
+            android:buttonTint="@color/my_secondary_background_color"
+            android:textSize="20sp" />
+    </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>
