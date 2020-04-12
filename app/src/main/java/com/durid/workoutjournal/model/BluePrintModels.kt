@@ -1,6 +1,5 @@
 package com.durid.workoutjournal.model
 
-
 data class WorkoutBluePrint(
     var Id : String?,
     var Name : String,

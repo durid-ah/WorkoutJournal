@@ -9,12 +9,14 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.durid.workoutjournal.R
+import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.WorkoutBluePrint
 import com.durid.workoutjournal.ui.workoutBlueprints.WorkoutBluePrintFragment
 
-class WorkoutBluePrintDialogFragment(var wbp : WorkoutBluePrint?,
-                                     private val fragment: WorkoutBluePrintFragment)
-                                        : DialogFragment() {
+class WorkoutBluePrintDialogFragment(
+    var wbp : WorkoutBluePrint?,
+    private val fragment: WorkoutBluePrintFragment
+) : DialogFragment() {
 
     private lateinit var listener: WorkoutBluePrintDialogListener
     private lateinit var dialogType : DialogType
@@ -78,14 +80,12 @@ class WorkoutBluePrintDialogFragment(var wbp : WorkoutBluePrint?,
         }
     }
 
-    enum class DialogType {
-        ADD, EDIT
-    }
-
     interface WorkoutBluePrintDialogListener {
-        fun onEditDialogPositiveClick(dialog: DialogInterface,
-                                      wbp: WorkoutBluePrint?,
-                                      dialogType: DialogType)
+        fun onEditDialogPositiveClick(
+            dialog: DialogInterface,
+            wbp: WorkoutBluePrint?,
+            dialogType: DialogType
+        )
     }
 
 }
