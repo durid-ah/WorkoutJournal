@@ -15,7 +15,6 @@ import com.durid.workoutjournal.data.ExerciseBluePrintRepo
 import com.durid.workoutjournal.data.ExerciseSetBluePrintRepo
 import com.durid.workoutjournal.model.ExerciseBluePrint
 import com.durid.workoutjournal.model.ExerciseSet
-import com.durid.workoutjournal.model.WorkoutType
 import com.durid.workoutjournal.ui.adapters.ExerciseBluePrintAdapter
 
 /**
