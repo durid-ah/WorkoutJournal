@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.durid.workoutjournal.R
 import com.durid.workoutjournal.data.BluePrintRepo
+import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.WorkoutBluePrint
 import com.durid.workoutjournal.ui.adapters.WorkoutBluePrintAdapter
 import com.durid.workoutjournal.ui.dialogs.DeleteDialogFragment
@@ -92,9 +93,9 @@ class WorkoutBluePrintFragment : Fragment(),
     override fun onEditDialogPositiveClick(
         dialog: DialogInterface,
         wbp: WorkoutBluePrint?,
-        dialogType: WorkoutBluePrintDialogFragment.DialogType
+        dialogType: DialogType
     ) {
-        if (dialogType == WorkoutBluePrintDialogFragment.DialogType.ADD) {
+        if (dialogType == DialogType.ADD) {
             workoutBluePrintViewModel.addWorkoutBluePrint(wbp!!)
         } else {
             workoutBluePrintViewModel.editWorkoutBluePrint(wbp!!)

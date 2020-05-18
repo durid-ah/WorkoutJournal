@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.durid.workoutjournal.R
 import com.durid.workoutjournal.model.DialogType
@@ -25,7 +27,10 @@ class ExerciseBluePrintDialog(
 
     private lateinit var listener : ExerciseBluePrintDialogListener
     private lateinit var dialogType: DialogType
-    // TODO: add dialog layout fields
+    private lateinit var exerciseBluePrintName : TextView
+    private lateinit var exerciseBluePrintInfo : TextView
+    private lateinit var radioGroup: RadioGroup
+
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity.let {
