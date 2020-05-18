@@ -73,7 +73,6 @@ class ExerciseBluePrintViewModel(
     val exerciseBluePrint = MutableLiveData<ArrayList<ExerciseBluePrint>>().apply {
         value = ArrayList()
     }
-
 }
 
 class ExerciseBluePrintViewModelFactory(

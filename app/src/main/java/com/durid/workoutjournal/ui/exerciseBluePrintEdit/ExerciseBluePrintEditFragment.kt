@@ -1,5 +1,6 @@
 package com.durid.workoutjournal.ui.exerciseBluePrintEdit
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,16 +14,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.durid.workoutjournal.R
 import com.durid.workoutjournal.data.ExerciseBluePrintRepo
 import com.durid.workoutjournal.data.ExerciseSetBluePrintRepo
+import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.ExerciseBluePrint
 import com.durid.workoutjournal.model.ExerciseSet
 import com.durid.workoutjournal.ui.adapters.ExerciseBluePrintAdapter
+import com.durid.workoutjournal.ui.dialogs.EditExerciseBluePrintDialog
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ExerciseBluePrintEditFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ExerciseBluePrintEditFragment : Fragment() {
+class ExerciseBluePrintEditFragment:
+    EditExerciseBluePrintDialog.EditExerciseBluePrintDialogListener,
+    Fragment() {
 
     private lateinit var exerciseBluePrintViewModel: ExerciseBluePrintViewModel
 
@@ -83,5 +88,13 @@ class ExerciseBluePrintEditFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = ExerciseBluePrintEditFragment()
+    }
+
+    override fun onEditDialogPositiveClick(
+        dialog: DialogInterface,
+        wbp: ExerciseBluePrint?,
+        dialogType: DialogType
+    ) {
+        TODO("Not yet implemented")
     }
 }
