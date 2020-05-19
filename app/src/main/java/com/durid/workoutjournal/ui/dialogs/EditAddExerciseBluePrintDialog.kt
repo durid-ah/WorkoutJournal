@@ -12,12 +12,12 @@ import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.ExerciseBluePrint
 import com.durid.workoutjournal.ui.exerciseBluePrintEdit.ExerciseBluePrintEditFragment
 
-class EditExerciseBluePrintDialog(
+class EditAddExerciseBluePrintDialog(
     var ebp : ExerciseBluePrint?,
     private val fragment : ExerciseBluePrintEditFragment
 ) : DialogFragment() {
 
-    interface EditExerciseBluePrintDialogListener {
+    interface EditAddExerciseBluePrintDialogListener {
         fun onEditDialogPositiveClick(
             dialog: DialogInterface,
             wbp: ExerciseBluePrint?,
@@ -25,7 +25,11 @@ class EditExerciseBluePrintDialog(
         )
     }
 
-    private lateinit var listener : EditExerciseBluePrintDialogListener
+    private fun setDialogType(add : Boolean) {
+        dialogType = if (add) DialogType.EDIT else DialogType.ADD
+    }
+
+    private lateinit var listener : EditAddExerciseBluePrintDialogListener
     private lateinit var dialogType: DialogType
     private lateinit var exerciseBluePrintName : TextView
     private lateinit var exerciseBluePrintInfo : TextView

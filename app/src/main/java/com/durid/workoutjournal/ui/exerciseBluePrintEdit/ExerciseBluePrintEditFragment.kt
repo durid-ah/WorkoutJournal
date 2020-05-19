@@ -18,7 +18,7 @@ import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.ExerciseBluePrint
 import com.durid.workoutjournal.model.ExerciseSet
 import com.durid.workoutjournal.ui.adapters.ExerciseBluePrintAdapter
-import com.durid.workoutjournal.ui.dialogs.EditExerciseBluePrintDialog
+import com.durid.workoutjournal.ui.dialogs.EditAddExerciseBluePrintDialog
 
 /**
  * A simple [Fragment] subclass.
@@ -26,7 +26,7 @@ import com.durid.workoutjournal.ui.dialogs.EditExerciseBluePrintDialog
  * create an instance of this fragment.
  */
 class ExerciseBluePrintEditFragment:
-    EditExerciseBluePrintDialog.EditExerciseBluePrintDialogListener,
+    EditAddExerciseBluePrintDialog.EditAddExerciseBluePrintDialogListener,
     Fragment() {
 
     private lateinit var exerciseBluePrintViewModel: ExerciseBluePrintViewModel
