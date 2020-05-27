@@ -28,7 +28,7 @@ class WorkoutBluePrintAddEditForm() : BluePrintFormInterface<WorkoutBluePrint> {
     // NOTE TO SELF: since form view and listener cannot be assigned at initiation they need
     // to be added later on in the process.
     // TODO: Work on adding in dialogType as well as a better way to handle the blueprint and the
-    // TODO: listener
+    // TODO: listener, check for the possibility of the blueprint to be null
     override fun lateInitValues(
         formView : View,
         listener: AddEditBluePrintDialog.AddEditBluePrintDialogListener<WorkoutBluePrint>
