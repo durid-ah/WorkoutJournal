@@ -25,10 +25,6 @@ class EditAddExerciseBluePrintDialog(
         )
     }
 
-    private fun setDialogType(add : Boolean) {
-        dialogType = if (add) DialogType.EDIT else DialogType.ADD
-    }
-
     private lateinit var listener : EditAddExerciseBluePrintDialogListener
     private lateinit var dialogType: DialogType
     private lateinit var exerciseBluePrintName : TextView

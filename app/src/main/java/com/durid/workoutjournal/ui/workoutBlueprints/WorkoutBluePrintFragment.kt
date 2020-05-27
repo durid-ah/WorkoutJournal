@@ -16,12 +16,15 @@ import com.durid.workoutjournal.data.BluePrintRepo
 import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.WorkoutBluePrint
 import com.durid.workoutjournal.ui.adapters.WorkoutBluePrintAdapter
+import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
 import com.durid.workoutjournal.ui.dialogs.DeleteDialogFragment
 import com.durid.workoutjournal.ui.dialogs.WorkoutBluePrintDialogFragment
+import com.durid.workoutjournal.ui.forms.WorkoutBluePrintAddEditForm
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WorkoutBluePrintFragment : Fragment(),
     WorkoutBluePrintDialogFragment.WorkoutBluePrintDialogListener,
+    AddEditBluePrintDialog.AddEditBluePrintDialogListener<WorkoutBluePrint>,
     DeleteDialogFragment.DeleteDialogListener {
 
     private lateinit var workoutBluePrintViewModel: WorkoutBluePrintViewModel
@@ -76,7 +79,11 @@ class WorkoutBluePrintFragment : Fragment(),
     }
 
     fun showEdit(wbp : WorkoutBluePrint) {
-        val dialogFragment = WorkoutBluePrintDialogFragment(wbp, this)
+        val dialogFragment = AddEditBluePrintDialog<WorkoutBluePrint>(
+            wbp,
+            WorkoutBluePrintAddEditForm()
+        )
+            // WorkoutBluePrintDialogFragment(wbp, this)
         dialogFragment.show(childFragmentManager, "WorkoutBluePrintDialogFragment")
     }
 
