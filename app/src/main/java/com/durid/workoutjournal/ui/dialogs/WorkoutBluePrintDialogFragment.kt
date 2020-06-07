@@ -34,7 +34,7 @@ class WorkoutBluePrintDialogFragment(
             val formView = inflater.inflate(R.layout.workout_blueprint_dialog, null)
 
             try {
-                listener = fragment
+
             } catch (ex : ClassCastException) {
                 throw ex
             }

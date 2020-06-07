@@ -23,9 +23,9 @@ import com.durid.workoutjournal.ui.forms.WorkoutBluePrintAddEditForm
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WorkoutBluePrintFragment : Fragment(),
-    WorkoutBluePrintDialogFragment.WorkoutBluePrintDialogListener,
     AddEditBluePrintDialog.AddEditBluePrintDialogListener<WorkoutBluePrint>,
-    DeleteDialogFragment.DeleteDialogListener {
+    DeleteDialogFragment.DeleteDialogListener
+{
 
     private lateinit var workoutBluePrintViewModel: WorkoutBluePrintViewModel
     private lateinit var recyclerView : RecyclerView
@@ -84,13 +84,15 @@ class WorkoutBluePrintFragment : Fragment(),
             WorkoutBluePrintAddEditForm(this, wbp)
         )
 
-            // WorkoutBluePrintDialogFragment(wbp, this)
         addEditDialogFragment.show(childFragmentManager, "WorkoutBluePrintDialogFragment")
     }
 
     private fun showAdd() {
-        val dialogFragment = WorkoutBluePrintDialogFragment(null, this)
-        dialogFragment.show(childFragmentManager, "WorkoutBluePrintDialogFragment")
+        addEditDialogFragment =AddEditBluePrintDialog(
+            WorkoutBluePrintAddEditForm(this, null)
+        )
+
+        addEditDialogFragment.show(childFragmentManager, "WorkoutBluePrintDialogFragment")
     }
 
     fun showDeleteDialog(Id: String) {
@@ -99,13 +101,13 @@ class WorkoutBluePrintFragment : Fragment(),
     }
 
     override fun onAddEditDialogPositiveClick(
-        wbp: WorkoutBluePrint?,
+        bluePrint: WorkoutBluePrint?,
         dialogType: DialogType
     ) {
         if (dialogType == DialogType.ADD) {
-            workoutBluePrintViewModel.addWorkoutBluePrint(wbp!!)
+            workoutBluePrintViewModel.addWorkoutBluePrint(bluePrint!!)
         } else {
-            workoutBluePrintViewModel.editWorkoutBluePrint(wbp!!)
+            workoutBluePrintViewModel.editWorkoutBluePrint(bluePrint!!)
         }
 
         addEditDialogFragment.dismiss()
@@ -121,15 +123,6 @@ class WorkoutBluePrintFragment : Fragment(),
     override fun onDeleteDialogPositiveClick(dialog: DialogInterface, Id: String) {
         workoutBluePrintViewModel.deleteWorkoutBluePrint(Id)
         dialog.dismiss()
-    }
-
-    // TODO: TO DELETE
-    override fun onEditDialogPositiveClick(
-        dialog: DialogInterface,
-        wbp: WorkoutBluePrint?,
-        dialogType: DialogType
-    ) {
-        TODO("Not yet implemented")
     }
 
     override fun onCancelAddEditDialog() {
