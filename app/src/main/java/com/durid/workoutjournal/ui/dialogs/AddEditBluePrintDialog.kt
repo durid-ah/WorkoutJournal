@@ -2,24 +2,31 @@ package com.durid.workoutjournal.ui.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.durid.workoutjournal.R
 import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.ui.forms.BluePrintFormInterface
 
-
+/**
+ * A generic dialog that handles the add/edit of different models
+ * @param T the model type
+ * @property form the object that handles all the form functionality
+ */
 class AddEditBluePrintDialog<T>(
-    private val bp : T?,
     private val form : BluePrintFormInterface<T>
 ) : DialogFragment() {
 
+    /**
+     * The interface that handles the confirm and cancel buttons
+     * @param T the model type
+     */
     interface AddEditBluePrintDialogListener<T> {
         fun onAddEditDialogPositiveClick(
             blueprint: T?,
             dialogType: DialogType
         )
+
         fun onCancelAddEditDialog()
     }
 
@@ -30,9 +37,7 @@ class AddEditBluePrintDialog<T>(
             val formView = inflater.inflate(form.LAYOUT_ID, null)
             builder.setView(formView)
 
-            val dialogType = if (this.bp == null) DialogType.ADD else DialogType.EDIT
-
-            form.lateInitValues(formView, dialogType, bp!!)
+            form.lateInitValues(formView)
             form.setSave()
             form.setCancel()
 

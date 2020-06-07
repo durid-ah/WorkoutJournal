@@ -1,6 +1,5 @@
 package com.durid.workoutjournal.ui.forms
 
-import android.content.DialogInterface
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -9,48 +8,56 @@ import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.WorkoutBluePrint
 import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
 
+/**
+ * Implementing the Form interface for the @param[WorkoutBluePrint]
+ */
 class WorkoutBluePrintAddEditForm(
-    override val listener: AddEditBluePrintDialog.AddEditBluePrintDialogListener<WorkoutBluePrint>
+    override val listener: AddEditBluePrintDialog.AddEditBluePrintDialogListener<WorkoutBluePrint>,
+    override var item: WorkoutBluePrint?
 ) : BluePrintFormInterface<WorkoutBluePrint>
 {
 
-    override lateinit var dialogType: DialogType
-    override var item: WorkoutBluePrint? = null //TODO: Move to constructor from lateInitValues() ?
-
+    // The form fields
     private lateinit var nameText : TextView
     private lateinit var descriptionText : TextView
     private lateinit var saveButton: Button
     private lateinit var cancelButton: Button
 
+    override lateinit var dialogType: DialogType
     override val LAYOUT_ID: Int
         get() = R.layout.workout_blueprint_dialog
 
     override fun lateInitValues(
-        formView : View,
-        dialogType: DialogType,
-        item : WorkoutBluePrint?
+        formView : View
     ) {
 
+        // Initialize the form fields
         nameText = formView.findViewById(R.id.blueprintName)
         descriptionText = formView.findViewById(R.id.blueprintDescription)
         saveButton = formView.findViewById(R.id.saveButton)
         cancelButton = formView.findViewById(R.id.cancelButton)
 
-        this.dialogType = dialogType
-        this.item = item
+        // Set the dialog type based on the model object
+        dialogType = if (item != null) DialogType.EDIT else DialogType.ADD
 
+        // If it is an edit dialog type fill the fields with the model data
         if (dialogType == DialogType.EDIT) {
             nameText.text = item!!.Name
-            descriptionText.text = item.Description
+            descriptionText.text = item!!.Description
         }
     }
 
     override fun setSave() {
         saveButton.setOnClickListener {
+            // If it is an add instantiate a new object with the form data
             if (dialogType == DialogType.ADD) {
-                item = WorkoutBluePrint(null,
+                item = WorkoutBluePrint(
+                    null,
                     nameText.text.toString(),
-                    descriptionText.text.toString(), null)
+                    descriptionText.text.toString(),
+                    null
+                )
+            // Else update the current object
             } else {
                 item!!.Name = nameText.text.toString()
                 item!!.Description = descriptionText.text.toString()

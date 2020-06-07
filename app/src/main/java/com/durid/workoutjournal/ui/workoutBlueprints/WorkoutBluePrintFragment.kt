@@ -81,8 +81,7 @@ class WorkoutBluePrintFragment : Fragment(),
 
     fun showEdit(wbp : WorkoutBluePrint) {
         addEditDialogFragment = AddEditBluePrintDialog(
-            wbp,
-            WorkoutBluePrintAddEditForm(this)
+            WorkoutBluePrintAddEditForm(this, wbp)
         )
 
             // WorkoutBluePrintDialogFragment(wbp, this)
