@@ -18,7 +18,6 @@ import com.durid.workoutjournal.model.WorkoutBluePrint
 import com.durid.workoutjournal.ui.adapters.WorkoutBluePrintAdapter
 import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
 import com.durid.workoutjournal.ui.dialogs.DeleteDialogFragment
-import com.durid.workoutjournal.ui.dialogs.WorkoutBluePrintDialogFragment
 import com.durid.workoutjournal.ui.forms.WorkoutBluePrintAddEditForm
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -101,13 +100,13 @@ class WorkoutBluePrintFragment : Fragment(),
     }
 
     override fun onAddEditDialogPositiveClick(
-        bluePrint: WorkoutBluePrint?,
+        blueprint: WorkoutBluePrint?,
         dialogType: DialogType
     ) {
         if (dialogType == DialogType.ADD) {
-            workoutBluePrintViewModel.addWorkoutBluePrint(bluePrint!!)
+            workoutBluePrintViewModel.addWorkoutBluePrint(blueprint!!)
         } else {
-            workoutBluePrintViewModel.editWorkoutBluePrint(bluePrint!!)
+            workoutBluePrintViewModel.editWorkoutBluePrint(blueprint!!)
         }
 
         addEditDialogFragment.dismiss()
