@@ -23,11 +23,3 @@ data class ExerciseSet(
     var Weight : Int,
     var WeightUnit : WeightUnit
 )
-
-enum class WorkoutType {
-    REPS, TIMED
-}
-
-enum class WeightUnit {
-    LBS, KG
-}
