@@ -9,13 +9,13 @@ import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.WorkoutBluePrint
 import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
 
-class WorkoutBluePrintAddEditForm() : BluePrintFormInterface<WorkoutBluePrint> {
+class WorkoutBluePrintAddEditForm(
+    override val listener: AddEditBluePrintDialog.AddEditBluePrintDialogListener<WorkoutBluePrint>
+) : BluePrintFormInterface<WorkoutBluePrint>
+{
 
     override lateinit var dialogType: DialogType
-    override lateinit var item: WorkoutBluePrint
-    override lateinit var dialog: DialogInterface
-    override lateinit var listener
-            : AddEditBluePrintDialog.AddEditBluePrintDialogListener<WorkoutBluePrint>
+    override var item: WorkoutBluePrint? = null //TODO: Move to constructor from lateInitValues() ?
 
     private lateinit var nameText : TextView
     private lateinit var descriptionText : TextView
@@ -25,20 +25,24 @@ class WorkoutBluePrintAddEditForm() : BluePrintFormInterface<WorkoutBluePrint> {
     override val LAYOUT_ID: Int
         get() = R.layout.workout_blueprint_dialog
 
-    // NOTE TO SELF: since form view and listener cannot be assigned at initiation they need
-    // to be added later on in the process.
-    // TODO: Work on adding in dialogType as well as a better way to handle the blueprint and the
-    // TODO: listener, check for the possibility of the blueprint to be null
     override fun lateInitValues(
         formView : View,
-        listener: AddEditBluePrintDialog.AddEditBluePrintDialogListener<WorkoutBluePrint>
+        dialogType: DialogType,
+        item : WorkoutBluePrint?
     ) {
-        this.listener = listener
 
         nameText = formView.findViewById(R.id.blueprintName)
         descriptionText = formView.findViewById(R.id.blueprintDescription)
         saveButton = formView.findViewById(R.id.saveButton)
         cancelButton = formView.findViewById(R.id.cancelButton)
+
+        this.dialogType = dialogType
+        this.item = item
+
+        if (dialogType == DialogType.EDIT) {
+            nameText.text = item!!.Name
+            descriptionText.text = item.Description
+        }
     }
 
     override fun setSave() {
@@ -52,13 +56,13 @@ class WorkoutBluePrintAddEditForm() : BluePrintFormInterface<WorkoutBluePrint> {
                 item!!.Description = descriptionText.text.toString()
             }
 
-            listener.onEditDialogPositiveClick(dialog, item, dialogType)
+            listener.onAddEditDialogPositiveClick(item, dialogType)
         }
     }
 
     override fun setCancel() {
         cancelButton.setOnClickListener {
-            dialog.cancel()
+            listener.onCancelAddEditDialog()
         }
     }
 }

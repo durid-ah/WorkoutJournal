@@ -11,18 +11,16 @@ import com.durid.workoutjournal.ui.forms.BluePrintFormInterface
 
 
 class AddEditBluePrintDialog<T>(
-    bp : T?,
-    private val form : BluePrintFormInterface<T>,
-    private val listener : AddEditBluePrintDialogListener<T>
+    private val bp : T?,
+    private val form : BluePrintFormInterface<T>
 ) : DialogFragment() {
-    private lateinit var dialogType : DialogType
 
     interface AddEditBluePrintDialogListener<T> {
-        fun onEditDialogPositiveClick(
-            dialog: DialogInterface,
+        fun onAddEditDialogPositiveClick(
             blueprint: T?,
             dialogType: DialogType
         )
+        fun onCancelAddEditDialog()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -30,9 +28,11 @@ class AddEditBluePrintDialog<T>(
             val builder = AlertDialog.Builder(it, R.style.CustomAlertDialog)
             val inflater = requireActivity().layoutInflater
             val formView = inflater.inflate(form.LAYOUT_ID, null)
-
-            form.lateInitValues(formView, listener)
             builder.setView(formView)
+
+            val dialogType = if (this.bp == null) DialogType.ADD else DialogType.EDIT
+
+            form.lateInitValues(formView, dialogType, bp!!)
             form.setSave()
             form.setCancel()
 

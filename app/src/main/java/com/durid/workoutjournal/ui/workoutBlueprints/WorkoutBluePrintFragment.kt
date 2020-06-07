@@ -30,6 +30,7 @@ class WorkoutBluePrintFragment : Fragment(),
     private lateinit var workoutBluePrintViewModel: WorkoutBluePrintViewModel
     private lateinit var recyclerView : RecyclerView
     private lateinit var wbpAdapter : WorkoutBluePrintAdapter
+    private lateinit var addEditDialogFragment : AddEditBluePrintDialog<WorkoutBluePrint>
     private var workoutBluePrintList = ArrayList<WorkoutBluePrint>()
 
     private fun initRecycler(root : View) {
@@ -79,12 +80,13 @@ class WorkoutBluePrintFragment : Fragment(),
     }
 
     fun showEdit(wbp : WorkoutBluePrint) {
-        val dialogFragment = AddEditBluePrintDialog<WorkoutBluePrint>(
+        addEditDialogFragment = AddEditBluePrintDialog(
             wbp,
-            WorkoutBluePrintAddEditForm()
+            WorkoutBluePrintAddEditForm(this)
         )
+
             // WorkoutBluePrintDialogFragment(wbp, this)
-        dialogFragment.show(childFragmentManager, "WorkoutBluePrintDialogFragment")
+        addEditDialogFragment.show(childFragmentManager, "WorkoutBluePrintDialogFragment")
     }
 
     private fun showAdd() {
@@ -97,8 +99,7 @@ class WorkoutBluePrintFragment : Fragment(),
         dialogFragment.show(childFragmentManager, "DeleteDialogFragment")
     }
 
-    override fun onEditDialogPositiveClick(
-        dialog: DialogInterface,
+    override fun onAddEditDialogPositiveClick(
         wbp: WorkoutBluePrint?,
         dialogType: DialogType
     ) {
@@ -108,7 +109,7 @@ class WorkoutBluePrintFragment : Fragment(),
             workoutBluePrintViewModel.editWorkoutBluePrint(wbp!!)
         }
 
-        dialog.dismiss()
+        addEditDialogFragment.dismiss()
     }
 
     fun launchExerciseBlueprintFragment(Id: String) {
@@ -121,5 +122,18 @@ class WorkoutBluePrintFragment : Fragment(),
     override fun onDeleteDialogPositiveClick(dialog: DialogInterface, Id: String) {
         workoutBluePrintViewModel.deleteWorkoutBluePrint(Id)
         dialog.dismiss()
+    }
+
+    // TODO: TO DELETE
+    override fun onEditDialogPositiveClick(
+        dialog: DialogInterface,
+        wbp: WorkoutBluePrint?,
+        dialogType: DialogType
+    ) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCancelAddEditDialog() {
+        addEditDialogFragment.dismiss()
     }
 }
