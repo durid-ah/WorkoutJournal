@@ -27,9 +27,7 @@ class WorkoutBluePrintAddEditForm(
     override val LAYOUT_ID: Int
         get() = R.layout.workout_blueprint_dialog
 
-    override fun lateInitValues(
-        formView : View
-    ) {
+    override fun lateInitValues(formView : View) {
 
         // Initialize the form fields
         nameText = formView.findViewById(R.id.blueprintName)

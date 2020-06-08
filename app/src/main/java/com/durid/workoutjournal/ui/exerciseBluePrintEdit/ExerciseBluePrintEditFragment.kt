@@ -18,6 +18,7 @@ import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.ExerciseBluePrint
 import com.durid.workoutjournal.model.ExerciseSet
 import com.durid.workoutjournal.ui.adapters.ExerciseBluePrintAdapter
+import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
 import com.durid.workoutjournal.ui.dialogs.EditAddExerciseBluePrintDialog
 
 /**
@@ -26,7 +27,7 @@ import com.durid.workoutjournal.ui.dialogs.EditAddExerciseBluePrintDialog
  * create an instance of this fragment.
  */
 class ExerciseBluePrintEditFragment:
-    EditAddExerciseBluePrintDialog.EditAddExerciseBluePrintDialogListener,
+    AddEditBluePrintDialog.AddEditBluePrintDialogListener<ExerciseBluePrint>,
     Fragment() {
 
     private lateinit var exerciseBluePrintViewModel: ExerciseBluePrintViewModel
@@ -90,11 +91,14 @@ class ExerciseBluePrintEditFragment:
         fun newInstance() = ExerciseBluePrintEditFragment()
     }
 
-    override fun onEditDialogPositiveClick(
-        dialog: DialogInterface,
-        wbp: ExerciseBluePrint?,
+    override fun onAddEditDialogPositiveClick(
+        blueprint: ExerciseBluePrint?,
         dialogType: DialogType
     ) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCancelAddEditDialog() {
         TODO("Not yet implemented")
     }
 }
