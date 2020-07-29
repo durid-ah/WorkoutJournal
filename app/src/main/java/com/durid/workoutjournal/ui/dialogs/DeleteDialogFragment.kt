@@ -35,11 +35,11 @@ class DeleteDialogFragment(
             builder.setView(formView)
 
             confirmButton.setOnClickListener {
-                listener.onDeleteDialogPositiveClick(dialog, id)
+                listener.onDeleteDialogPositiveClick(dialog!!, id)
             }
 
             cancelButton.setOnClickListener {
-                dialog.cancel()
+                dialog!!.cancel()
             }
 
             builder.create()

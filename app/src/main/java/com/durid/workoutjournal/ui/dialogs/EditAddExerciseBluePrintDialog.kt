@@ -39,7 +39,7 @@ class EditAddExerciseBluePrintDialog(
             val formView = inflater.inflate(R.layout.exercise_bp_dialog, null)
 
             try {
-                listener = fragment
+                //listener = fragment
             } catch (ex : ClassCastException) {
                 throw ex
             }
