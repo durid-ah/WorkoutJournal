@@ -35,7 +35,7 @@ class ExerciseBluePrintEditFragment:
 
     private val args : ExerciseBluePrintEditFragmentArgs by navArgs()
     private var exerciseBluePrintList = ArrayList<ExerciseBluePrint>()
-    private lateinit var id : String
+    private lateinit var workoutId : String
     private lateinit var ebpAdapter : ExerciseBluePrintAdapter
 
     override fun onCreateView(
@@ -43,7 +43,7 @@ class ExerciseBluePrintEditFragment:
         savedInstanceState: Bundle?
     ): View? {
 
-        id = args.workoutId
+        workoutId = args.workoutId
         val dataSource = ExerciseBluePrintRepo(requireActivity().applicationContext)
         val secondarySource = ExerciseSetBluePrintRepo(requireActivity().applicationContext)
 
@@ -86,12 +86,20 @@ class ExerciseBluePrintEditFragment:
                 ebpAdapter.updateData(it)
             })
 
-        exerciseBluePrintViewModel.getExerciseBluePrints(id)
+        exerciseBluePrintViewModel.getExerciseBluePrints(workoutId)
+    }
+
+    fun showEditExerciseDialog(bp : ExerciseBluePrint) {
+        addEditDialogFragment = AddEditBluePrintDialog(
+            ExerciseBluePrintAddEditForm(bp, this, workoutId)
+        )
+
+        addEditDialogFragment.show(childFragmentManager, "EditExerciseBluePrintDialogFragment")
     }
 
     private fun showAddExerciseDialog() {
         addEditDialogFragment = AddEditBluePrintDialog(
-            ExerciseBluePrintAddEditForm(null, this, id)
+            ExerciseBluePrintAddEditForm(null, this, workoutId)
         )
 
         addEditDialogFragment.show(childFragmentManager, "ExerciseBluePrintDialogFragment")

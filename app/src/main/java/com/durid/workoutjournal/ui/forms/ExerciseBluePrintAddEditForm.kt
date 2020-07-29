@@ -75,6 +75,7 @@ class ExerciseBluePrintAddEditForm(
             } else {
                 item!!.ExerciseName = exerciseBpName
                 item!!.Info = exerciseBpInfo
+                item!!.WorkoutType = workoutType
             }
 
             listener.onAddEditDialogPositiveClick(item, dialogType)

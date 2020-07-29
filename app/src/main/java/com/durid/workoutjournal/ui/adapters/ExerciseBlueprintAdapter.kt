@@ -45,6 +45,9 @@ class ExerciseBluePrintAdapter (
         private val workoutType =  itemView.findViewById<TextView>(R.id.workoutType)
         private val infoButton = itemView.findViewById<Button>(R.id.infoButton)
 
+        // Exercise buttons
+        private val editExerciseButton = itemView.findViewById<Button>(R.id.editExercise)
+
         private val exerciseSetRecyclerView = itemView
             .findViewById<RecyclerView>(R.id.exercise_set_recycler_view)
 
@@ -58,10 +61,14 @@ class ExerciseBluePrintAdapter (
             minExerciseBluePrint.setOnClickListener {
                 if (exerciseSetRecyclerView.visibility == View.GONE) {
                     exerciseSetRecyclerView.visibility = View.VISIBLE
+                    setButtonVisibility(View.VISIBLE)
                 } else {
                     exerciseSetRecyclerView.visibility = View.GONE
+                    setButtonVisibility(View.GONE)
                 }
             }
+
+            editExerciseButton.setOnClickListener { ebpFragment.showEditExerciseDialog(ebp) }
 
             exerciseSetRecyclerView.layoutManager = LinearLayoutManager(context)
             val adapter = ExerciseSetBpAdapter(
@@ -71,6 +78,11 @@ class ExerciseBluePrintAdapter (
             )
 
             exerciseSetRecyclerView.adapter = adapter
+        }
+
+
+        fun setButtonVisibility(setting : Int) {
+            editExerciseButton.visibility = setting
         }
     }
 }
