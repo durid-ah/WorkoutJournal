@@ -112,13 +112,6 @@ class WorkoutBluePrintFragment : Fragment(),
         addEditDialogFragment.dismiss()
     }
 
-    fun launchExerciseBlueprintFragment(Id: String) {
-        val action = WorkoutBluePrintFragmentDirections
-            .actionNavigationWorkoutBlueprintsToExerciseBluePrintEditFragment(Id)
-
-        findNavController().navigate(action)
-    }
-
     override fun onDeleteDialogPositiveClick(dialog: DialogInterface, Id: String) {
         workoutBluePrintViewModel.deleteWorkoutBluePrint(Id)
         dialog.dismiss()
@@ -126,5 +119,12 @@ class WorkoutBluePrintFragment : Fragment(),
 
     override fun onCancelAddEditDialog() {
         addEditDialogFragment.dismiss()
+    }
+
+    fun launchExerciseBlueprintFragment(Id: String) {
+        val action = WorkoutBluePrintFragmentDirections
+            .actionNavigationWorkoutBlueprintsToExerciseBluePrintEditFragment(Id)
+
+        findNavController().navigate(action)
     }
 }

@@ -1,6 +1,5 @@
 package com.durid.workoutjournal.ui.exerciseBluePrintEdit
 
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,7 +18,6 @@ import com.durid.workoutjournal.model.ExerciseBluePrint
 import com.durid.workoutjournal.model.ExerciseSet
 import com.durid.workoutjournal.ui.adapters.ExerciseBluePrintAdapter
 import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
-import com.durid.workoutjournal.ui.dialogs.EditAddExerciseBluePrintDialog
 import com.durid.workoutjournal.ui.forms.ExerciseBluePrintAddEditForm
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -51,23 +49,19 @@ class ExerciseBluePrintEditFragment:
 
         exerciseBluePrintViewModel =
                 ViewModelProviders.of(
-                    this,
-                    ExerciseBluePrintViewModelFactory(dataSource, secondarySource)
-                    ).get(ExerciseBluePrintViewModel::class.java)
+                    this, ExerciseBluePrintViewModelFactory(dataSource, secondarySource)
+                ).get(ExerciseBluePrintViewModel::class.java)
 
         val root = inflater.inflate(
-            R.layout.fragment_exercise_blue_print_edit,
-            container, false
+            R.layout.fragment_exercise_blue_print_edit, container, false
         )
 
-        val fab = root
-            .findViewById<FloatingActionButton>(R.id.floatingActionButton2)
-
+        val fab = root.findViewById<FloatingActionButton>(R.id.floatingActionButton2)
         fab.setOnClickListener{ showAddExerciseDialog() }
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.exerciseRecycler)
-
         recyclerView.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
+
         ebpAdapter = ExerciseBluePrintAdapter(
             requireActivity().applicationContext,
             this,
@@ -83,6 +77,7 @@ class ExerciseBluePrintEditFragment:
         exerciseBluePrintViewModel.addExerciseSet(esBp)
     }
 
+
     override fun onResume() {
         super.onResume()
         exerciseBluePrintViewModel
@@ -94,24 +89,29 @@ class ExerciseBluePrintEditFragment:
         exerciseBluePrintViewModel.getExerciseBluePrints(id)
     }
 
-    fun showAddExerciseDialog() {
+    private fun showAddExerciseDialog() {
         addEditDialogFragment = AddEditBluePrintDialog(
             ExerciseBluePrintAddEditForm(null, this, id)
         )
 
         addEditDialogFragment.show(childFragmentManager, "ExerciseBluePrintDialogFragment")
-
     }
 
     override fun onAddEditDialogPositiveClick(
         blueprint: ExerciseBluePrint?,
         dialogType: DialogType
     ) {
-        TODO("Not yet implemented")
+        if (dialogType == DialogType.ADD) {
+            exerciseBluePrintViewModel.addExerciseBluePrint(blueprint!!)
+        } else {
+            exerciseBluePrintViewModel.editExerciseBluePrint(blueprint!!)
+        }
+
+        addEditDialogFragment.dismiss()
     }
 
     override fun onCancelAddEditDialog() {
-        TODO("Not yet implemented")
+        addEditDialogFragment.dismiss()
     }
 
     companion object {

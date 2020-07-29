@@ -43,7 +43,7 @@ class ExerciseBluePrintViewModel(
         }
     }
 
-    fun editWorkoutBluePrint(bp : ExerciseBluePrint){
+    fun editExerciseBluePrint(bp : ExerciseBluePrint){
         viewModelScope.launch {
             dataSource.editExerciseBluePrint(bp)
             getExerciseBluePrints(bp.WorkoutBluePrintId)
