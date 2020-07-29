@@ -34,9 +34,9 @@ class WorkoutBluePrintFragment : Fragment(),
 
     private fun initRecycler(root : View) {
         recyclerView = root.findViewById(R.id.blue_print_recycler)
-        recyclerView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
         wbpAdapter = WorkoutBluePrintAdapter(
-            activity!!.applicationContext,
+            requireActivity().applicationContext,
             this,
             workoutBluePrintList
         )
@@ -49,7 +49,7 @@ class WorkoutBluePrintFragment : Fragment(),
         savedInstanceState: Bundle?
     ): View? {
 
-        val dataSource = BluePrintRepo(activity!!.applicationContext)
+        val dataSource = BluePrintRepo(requireActivity().applicationContext)
         workoutBluePrintViewModel =
             ViewModelProviders.of(this, WorkoutBluePrintViewModelFactory(dataSource))
                 .get(WorkoutBluePrintViewModel::class.java)
