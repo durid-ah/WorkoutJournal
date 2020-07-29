@@ -43,8 +43,8 @@ class ExerciseBluePrintEditFragment:
     ): View? {
 
         id = args.workoutId
-        val dataSource = ExerciseBluePrintRepo(activity!!.applicationContext)
-        val secondarySource = ExerciseSetBluePrintRepo(activity!!.applicationContext)
+        val dataSource = ExerciseBluePrintRepo(requireActivity().applicationContext)
+        val secondarySource = ExerciseSetBluePrintRepo(requireActivity().applicationContext)
 
         exerciseBluePrintViewModel =
                 ViewModelProviders.of(
@@ -59,9 +59,9 @@ class ExerciseBluePrintEditFragment:
         )
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.exerciseRecycler)
-        recyclerView.layoutManager = LinearLayoutManager(activity!!.applicationContext)
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
         ebpAdapter = ExerciseBluePrintAdapter(
-            activity!!.applicationContext,
+            requireActivity().applicationContext,
             this,
             exerciseBluePrintList
         )
