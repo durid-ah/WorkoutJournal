@@ -20,6 +20,8 @@ import com.durid.workoutjournal.model.ExerciseSet
 import com.durid.workoutjournal.ui.adapters.ExerciseBluePrintAdapter
 import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
 import com.durid.workoutjournal.ui.dialogs.EditAddExerciseBluePrintDialog
+import com.durid.workoutjournal.ui.forms.ExerciseBluePrintAddEditForm
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
  * A simple [Fragment] subclass.
@@ -31,6 +33,7 @@ class ExerciseBluePrintEditFragment:
     Fragment() {
 
     private lateinit var exerciseBluePrintViewModel: ExerciseBluePrintViewModel
+    private lateinit var addEditDialogFragment : AddEditBluePrintDialog<ExerciseBluePrint>
 
     private val args : ExerciseBluePrintEditFragmentArgs by navArgs()
     private var exerciseBluePrintList = ArrayList<ExerciseBluePrint>()
@@ -54,11 +57,16 @@ class ExerciseBluePrintEditFragment:
 
         val root = inflater.inflate(
             R.layout.fragment_exercise_blue_print_edit,
-            container,
-            false
+            container, false
         )
 
+        val fab = root
+            .findViewById<FloatingActionButton>(R.id.floatingActionButton2)
+
+        fab.setOnClickListener{ showAddExerciseDialog() }
+
         val recyclerView = root.findViewById<RecyclerView>(R.id.exerciseRecycler)
+
         recyclerView.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
         ebpAdapter = ExerciseBluePrintAdapter(
             requireActivity().applicationContext,
@@ -86,9 +94,13 @@ class ExerciseBluePrintEditFragment:
         exerciseBluePrintViewModel.getExerciseBluePrints(id)
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = ExerciseBluePrintEditFragment()
+    fun showAddExerciseDialog() {
+        addEditDialogFragment = AddEditBluePrintDialog(
+            ExerciseBluePrintAddEditForm(null, this, id)
+        )
+
+        addEditDialogFragment.show(childFragmentManager, "ExerciseBluePrintDialogFragment")
+
     }
 
     override fun onAddEditDialogPositiveClick(
@@ -100,5 +112,10 @@ class ExerciseBluePrintEditFragment:
 
     override fun onCancelAddEditDialog() {
         TODO("Not yet implemented")
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = ExerciseBluePrintEditFragment()
     }
 }

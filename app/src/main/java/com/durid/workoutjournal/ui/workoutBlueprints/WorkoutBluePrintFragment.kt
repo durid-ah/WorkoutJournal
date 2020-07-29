@@ -87,7 +87,7 @@ class WorkoutBluePrintFragment : Fragment(),
     }
 
     private fun showAdd() {
-        addEditDialogFragment =AddEditBluePrintDialog(
+        addEditDialogFragment = AddEditBluePrintDialog(
             WorkoutBluePrintAddEditForm(this, null)
         )
 
