@@ -26,7 +26,7 @@ class ConfirmDialogFragment(
         return activity.let {
             val builder = AlertDialog.Builder(it, R.style.CustomAlertDialog)
             val inflater = requireActivity().layoutInflater
-            val formView = inflater.inflate(R.layout.delete_dialog, null)
+            val formView = inflater.inflate(R.layout.confirm_dialog, null)
 
             try {
                 listener = fragment
