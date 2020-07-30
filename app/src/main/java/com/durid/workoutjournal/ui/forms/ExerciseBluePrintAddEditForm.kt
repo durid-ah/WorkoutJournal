@@ -1,5 +1,6 @@
 package com.durid.workoutjournal.ui.forms
 
+import android.content.DialogInterface
 import android.view.View
 import android.widget.Button
 import android.widget.RadioGroup
@@ -9,6 +10,7 @@ import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.ExerciseBluePrint
 import com.durid.workoutjournal.model.WorkoutType
 import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
+import com.durid.workoutjournal.ui.dialogs.ConfirmDialogFragment
 import kotlinx.android.synthetic.main.exercise_bp_dialog.view.*
 
 class ExerciseBluePrintAddEditForm(
@@ -75,6 +77,7 @@ class ExerciseBluePrintAddEditForm(
             } else {
                 item!!.ExerciseName = exerciseBpName
                 item!!.Info = exerciseBpInfo
+                item!!.WorkoutType = workoutType
             }
 
             listener.onAddEditDialogPositiveClick(item, dialogType)
@@ -86,4 +89,5 @@ class ExerciseBluePrintAddEditForm(
             listener.onCancelAddEditDialog()
         }
     }
+
 }
