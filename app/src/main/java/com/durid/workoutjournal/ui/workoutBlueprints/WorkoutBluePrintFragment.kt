@@ -17,14 +17,15 @@ import com.durid.workoutjournal.model.DialogType
 import com.durid.workoutjournal.model.WorkoutBluePrint
 import com.durid.workoutjournal.ui.adapters.WorkoutBluePrintAdapter
 import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
-import com.durid.workoutjournal.ui.dialogs.DeleteDialogFragment
+import com.durid.workoutjournal.ui.dialogs.ConfirmDialogFragment
 import com.durid.workoutjournal.ui.forms.WorkoutBluePrintAddEditForm
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WorkoutBluePrintFragment : Fragment(),
     AddEditBluePrintDialog.AddEditBluePrintDialogListener<WorkoutBluePrint>,
-    DeleteDialogFragment.DeleteDialogListener
+    ConfirmDialogFragment.ConfirmDialogListener
 {
+    private val CONFIRM_DIALOG_DELETE_MESSAGE = "Are you sure you would like to delete this workout?"
 
     private lateinit var workoutBluePrintViewModel: WorkoutBluePrintViewModel
     private lateinit var recyclerView : RecyclerView
@@ -95,7 +96,7 @@ class WorkoutBluePrintFragment : Fragment(),
     }
 
     fun showDeleteDialog(Id: String) {
-        val dialogFragment = DeleteDialogFragment(Id,this)
+        val dialogFragment = ConfirmDialogFragment(Id, CONFIRM_DIALOG_DELETE_MESSAGE,this)
         dialogFragment.show(childFragmentManager, "DeleteDialogFragment")
     }
 

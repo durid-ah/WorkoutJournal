@@ -57,7 +57,7 @@ class ExerciseBluePrintViewModel(
     }
 
 
-    fun deleteWorkoutBluePrint(Id : String, workoutBpId : String) {
+    fun deleteExerciseBluePrint(Id : String, workoutBpId : String) {
         viewModelScope.launch {
             dataSource.deleteExerciseBluePrint(Id)
             getExerciseBluePrints(workoutBpId)

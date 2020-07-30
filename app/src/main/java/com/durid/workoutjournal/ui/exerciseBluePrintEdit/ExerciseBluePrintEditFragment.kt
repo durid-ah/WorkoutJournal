@@ -1,5 +1,6 @@
 package com.durid.workoutjournal.ui.exerciseBluePrintEdit
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.durid.workoutjournal.model.ExerciseBluePrint
 import com.durid.workoutjournal.model.ExerciseSet
 import com.durid.workoutjournal.ui.adapters.ExerciseBluePrintAdapter
 import com.durid.workoutjournal.ui.dialogs.AddEditBluePrintDialog
+import com.durid.workoutjournal.ui.dialogs.ConfirmDialogFragment
 import com.durid.workoutjournal.ui.forms.ExerciseBluePrintAddEditForm
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -28,6 +30,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  */
 class ExerciseBluePrintEditFragment:
     AddEditBluePrintDialog.AddEditBluePrintDialogListener<ExerciseBluePrint>,
+    ConfirmDialogFragment.ConfirmDialogListener,
     Fragment() {
 
     private lateinit var exerciseBluePrintViewModel: ExerciseBluePrintViewModel
@@ -120,6 +123,11 @@ class ExerciseBluePrintEditFragment:
 
     override fun onCancelAddEditDialog() {
         addEditDialogFragment.dismiss()
+    }
+
+    override fun onDeleteDialogPositiveClick(dialog: DialogInterface, Id: String) {
+        exerciseBluePrintViewModel.deleteExerciseBluePrint(Id, workoutId)
+        dialog.dismiss()
     }
 
     companion object {
