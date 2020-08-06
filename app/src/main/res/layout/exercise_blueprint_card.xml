@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/exercise_bp_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -47,20 +48,39 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
+                android:id="@+id/deleteExerciseButton"
+                android:layout_width="34dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_delete_primary_color_24dp"
+                android:shadowColor="#00FFFFFF"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/editExerciseButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/editExerciseButton"
+                android:layout_width="34dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ic_create_primary_color_24dp"
+                android:shadowColor="#00FFFFFF"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/infoButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
                 android:id="@+id/infoButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="34dp"
+                android:layout_height="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/ic_info_yellow_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.833" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/exercise_set_recycler_view"
@@ -72,18 +92,5 @@
             android:layout_marginBottom="16dp"
             android:visibility="gone" />
 
-        <Button
-            android:id="@+id/editExercise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:background="@color/transparent"
-            android:text="@string/edit_button"
-            android:textColor="@color/my_secondary_background_color"
-            android:textSize="18sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -41,6 +41,10 @@ class ExerciseBluePrintEditFragment:
     private lateinit var workoutId : String
     private lateinit var ebpAdapter : ExerciseBluePrintAdapter
 
+    private val CONFIRM_DIALOG_DELETE_MESSAGE =
+        "Are you sure you would like to delete this exercise and its sets?"
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -98,6 +102,11 @@ class ExerciseBluePrintEditFragment:
         )
 
         addEditDialogFragment.show(childFragmentManager, "EditExerciseBluePrintDialogFragment")
+    }
+
+    fun showDeleteDialog(Id : String) {
+        val dialogFragment = ConfirmDialogFragment(Id, CONFIRM_DIALOG_DELETE_MESSAGE,this)
+        dialogFragment.show(childFragmentManager, "DeleteDialogFragment")
     }
 
     private fun showAddExerciseDialog() {
